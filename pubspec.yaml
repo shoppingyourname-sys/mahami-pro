@@ -1,15 +1,15 @@
 name: mahami_pro
-description: "تطبيق مهامي Pro لإدارة المهام اليومية"
-publish_to: "none"
-version: 1.0.0+1
+description: A professional task and expense management application.
+publish_to: 'none'
+version: 2.1.0+3
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
