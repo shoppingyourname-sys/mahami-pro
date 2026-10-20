@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,22 +26,17 @@ jobs:
 
       - name: Prepare and Build App
         run: |
-          cp main.dart /tmp/main.dart
-          rm -rf pubspec*
+          cp -r lib /tmp/lib
+          cp pubspec.yaml /tmp/pubspec.yaml
           flutter create --org com.mahamipro --project-name mahami_pro .
-          cp /tmp/main.dart lib/main.dart
+          cp /tmp/pubspec.yaml pubspec.yaml
+          rm -rf lib
+          cp -r /tmp/lib lib
           flutter pub get
           flutter build apk --release
-          flutter build appbundle --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Mahami-Pro-APK
           path: build/app/outputs/flutter-apk/app-release.apk
-
-      - name: Upload AAB
-        uses: actions/upload-artifact@v4
-        with:
-          name: Mahami-Pro-PlayStore-AAB
-          path: build/app/outputs/bundle/release/app-release.aab
